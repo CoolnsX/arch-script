@@ -3,6 +3,7 @@ aalib
 accountsservice
 acl
 adobe-source-code-pro-fonts
+nerd-fonts-meslo
 adwaita-icon-theme
 alsa-card-profiles
 alsa-lib
