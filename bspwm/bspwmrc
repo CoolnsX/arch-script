@@ -3,24 +3,26 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 $HOME/.config/bspwm/launch.sh
+#$HOME/.config/bspwm/startup.sh
+
 light-locker &
 /usr/bin/dunst &
-bash /home/ermanno/.config/polybar/forest/launch.sh &
 nitrogen --restore &
 picom &
 
 bspc monitor -d I II III IV V 
 bspc config border_width         2
-bspc config window_gap           6
-bspc config top_padding		 25
+bspc config window_gap           5
+bspc config top_padding		 35
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a xfce4-terminal desktop='^1'
-bspc rule -a google-chrome-stable desktop='^2'
-bspc rule -a audacious desktop='^4'
-bspc rule -a thunar desktop='^3' state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+bspc rule -a Xfce4-terminal desktop='^2'
+bspc rule -a Google-chrome-stable desktop='^1'
+bspc rule -a Audacious desktop='^5'
+bspc rule -a Thunar desktop='^3'
+bspc rule -a Code desktop='^4'
+
+
