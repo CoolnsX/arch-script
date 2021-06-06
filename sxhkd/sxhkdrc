@@ -11,11 +11,11 @@ super + Y
 
 super + e
 	thunar
-
 	
 # Show Polybar
 super + p
 	polybar-msg cmd show
+
 # terminal emulator
 super + Return
 	xfce4-terminal
@@ -24,9 +24,11 @@ super + Return
 super + q
 	dmenu_run
 
-ctrl  + shift + Escape
+ctrl  + shift + @Escape
+	xfce4-taskmanager
+
 # make sxhkd reload its configuration files:
-super + Escape
+super + @Escape
 	pkill -USR1 -x sxhkd
 
 #
@@ -78,7 +80,7 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
+#alt + {_,shift + }@Tab
 	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
@@ -167,17 +169,17 @@ XF86MonBrightnessUp
 
 
 # lockscreen
-super + shift + l
+ctrl + shift + l
 	light-locker-command -l	
 
 # browser
-super + alt + b
+super + a
 	google-chrome-stable
 
 # kazam 
 super + @Print
 	kazam
 
-# kazam ss current window
+# kazam ss full screen
 @Print
-	kazam -w
+	kazam -f
