@@ -8,31 +8,18 @@ git clone https://aur.archlinux.org/yay.git
 cd yay/
 makepkg -si --noconfirm
 
-#pikaur -S --noconfirm lightdm-slick-greeter 
-#pikaur -S --noconfirm lightdm-settings
-#pikaur -S --noconfirm polybar
-#pikaur -S --noconfirm nerd-fonts-iosevka
-#pikaur -S --noconfirm ttf-icomoon-feather
-
-#pikaur -S --noconfirm system76-power
-#sudo systemctl enable --now system76-power
-#sudo system76-power graphics integrated
-#pikaur -S --noconfirm gnome-shell-extension-system76-power-git
-yay -S --noconfirm auto-cpufreq
+yay -S --noconfirm auto-cpufreq polybar ttf-unifont siji
 sudo systemctl enable --now auto-cpufreq
 
 echo "MAIN PACKAGES"
 
 sleep 5
 
-sudo pacman -S --noconfirm xorg light-locker lightdm bspwm sxhkd xfce4-terminal picom nitrogen lxappearance dmenu thunar simplescreenrecorder alsa-utils pulseaudio alsa-utils pulseaudio-alsa pavucontrol vlc dunst 
-
-#sudo flatpak install -y spotify
-#sudo flatpak install -y kdenlive
+sudo pacman -S --noconfirm --needed xorg light-locker lightdm bspwm sxhkd xfce4-terminal picom nitrogen lxappearance dmenu thunar simplescreenrecorder alsa-utils pulseaudio pulseaudio-alsa pavucontrol vlc dunst
 
 sudo systemctl enable lightdm
 
-mkdir -p .config/{bspwm,sxhkd,dunst}
+mkdir -p .config/{bspwm,sxhkd,dunst,polybar}
 
 install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
 install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
