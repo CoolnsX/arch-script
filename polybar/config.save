@@ -19,12 +19,14 @@
 [colors]
 ;background = ${xrdb:color0:#222}
 background = #55
-background-alt = #555
+x1 = #ff1a1a
+x2 = #0099ff
+background-alt = #55
 ;foreground = ${xrdb:color7:#222}
 foreground = #ff
 foreground-alt = #000
 primary = #ffb52a
-secondary = #f90000
+secondary = #00ff00
 alert = #bd2c40
 
 [bar/example]
@@ -35,6 +37,7 @@ height = 27
 ;offset-y = 1%
 radius = 0
 fixed-center = false
+enable-ipc = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -46,19 +49,21 @@ border-size = 4
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 1
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-
+font-0 = fixed:pixelsize=10;2
+font-1 = unifont:size=10:font=truetype:antialias=false;0
+font-2 = siji:pixelsize=10:font=Medium:antialias=false;1
+font-3 = Font Awesome 5 Free:pixelsize=11;2
+font-4 = Font Awesome 5 Free Solid:pixelsize=11;2
+font-5 = Font Awesome 5 Brands:pixelsize=11;2
 
 modules-left = bspwm xwindow
-;modules-center = mpd
-modules-right = xbacklight pulseaudio memory cpu wlan eth battery temperature date powermenu
+;modules-center = xwindow
+modules-right = xbacklight pulseaudio memory cpu wlan battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -67,7 +72,7 @@ tray-padding = 2
 wm-restack = bspwm
 ;wm-restack = i3
 
-;override-redirect = true
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -80,7 +85,7 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title:0:48:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -111,24 +116,30 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+label-focused = %icon%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 3
 
-label-occupied = %index%
-label-occupied-padding = 2
+label-occupied = %icon%
+label-occupied-padding = 3
 
-label-urgent = %index%!
+label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 3
 
-label-empty = %index%
+label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
+label-empty-padding = 3
 
 ; Separator in between workspaces
 ; label-separator = |
+
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
 
 [module/i3]
 type = internal/i3
@@ -184,8 +195,16 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+format = <ramp> <label>
+format-underline = #00dd00
+label = %percentage%%
+
+ramp-0 = 
+ramp-0-foreground = #00ddff
+ramp-1 = 
+ramp-1-foreground = #00ff00
+ramp-2 = 
+ramp-2-foreground = #ffb52a
 
 bar-width = 10
 bar-indicator = |
@@ -207,7 +226,7 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage:2%%
 
@@ -215,9 +234,9 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
 format-underline = #4bffdc
-label = %percentage_used%%
+label = %{A1:xfce4-taskmanager:}%mb_used%%{A}
 
 [module/wlan]
 type = internal/network
@@ -226,12 +245,12 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #ff00ff
-label-connected = %essid%
+label-connected = %{A1:xfce4-terminal -e nmtui:}%essid%%{A}
 
 ;format-disconnected =
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
+label-disconnected = %{A1:xfce4-terminal -e nmtui:}%ifname% disconnected%{A}
 label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
@@ -239,7 +258,7 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
@@ -248,40 +267,50 @@ interval = 3.0
 
 format-connected-underline = #55aa55
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+;label-disconnected-foreground = ${colors.foreground}
 
 [module/date]
 type = internal/date
 interval = 5
 
 date =
-date-alt = " %Y-%m-%d"
+date-alt = It's %a, %d %b
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = %I:%M
+time-alt = at %I:%M %P
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-prefix-foreground = ${colors.foreground}
+format-underline = #0000ff
 
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+format-volume = <ramp-volume> <label-volume>
+format-volume-underline = #ffff00
+label-volume=%percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
-label-muted-foreground = #000
+label-muted =  
+label-muted-foreground = #ff
+format-muted-underline = #ffff00
+ramp-volume-0 = 
+ramp-volume-0-foreground = #0000ff
+ramp-volume-1 = 
+ramp-volume-1-foreground = #00ff02
+ramp-volume-2 = 
+ramp-volume-2-foreground = #ffb52a
+
+click-right = pavucontrol
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #00FF02
@@ -289,8 +318,8 @@ bar-volume-foreground-1 = #00FF02
 bar-volume-foreground-2 = #00FF02
 bar-volume-foreground-3 = #00FF02
 bar-volume-foreground-4 = #00FF02
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+;bar-volume-foreground-5 = 
+;bar-volume-foreground-6 = 
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -332,34 +361,35 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT1
 adapter = ACAD
-full-at = 98
+full-at = 100
 
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
 
-format-discharging = <animation-discharging> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.foreground}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.x1}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.x1}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 2000
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
@@ -378,7 +408,7 @@ label-warn-foreground = ${colors.secondary}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu
@@ -387,26 +417,28 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close = 
 label-close-foreground = ${colors.secondary}
 label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+label-separator-foreground = ${colors.foreground}
 
-menu-0-0 = reboot
+menu-0-0 = 
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = 
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = cancel
+menu-1-0 = back
 menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-1 = 
+menu-1-1-exec = reboot
+menu-1-1-foreground = ${colors.x2}
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
+menu-2-0 = 
+menu-2-0-exec =poweroff
+menu-2-0-foreground = ${colors.x1}
+menu-2-1 = back
 menu-2-1-exec = menu-open-0
 
 [settings]

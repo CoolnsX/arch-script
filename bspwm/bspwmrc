@@ -3,26 +3,29 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 $HOME/.config/bspwm/launch.sh
-#$HOME/.config/bspwm/startup.sh
-
 light-locker &
 /usr/bin/dunst &
-nitrogen --restore &
+nitrogen --restore
 picom &
+#$HOME/.config/bspwm/startup.sh
 
-bspc monitor -d I II III IV V 
+bspc monitor -d I II III IV V
 bspc config border_width         2
 bspc config window_gap           5
-bspc config top_padding		 35
+bspc config top_padding		 33
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Xfce4-terminal desktop='^2'
-bspc rule -a Google-chrome-stable desktop='^1'
-bspc rule -a Audacious desktop='^5'
-bspc rule -a Thunar desktop='^3'
-bspc rule -a Code desktop='^4'
+
+bspc rule -a Xfce4-terminal desktop='^2' follow=on
+bspc rule -a Google-chrome desktop='^1' follow=on
+bspc rule -a Audacious desktop='^5' follow=on
+bspc rule -a Pavucontrol desktop='^5' follow=on
+bspc rule -a Thunar desktop='^3' follow=on 
+bspc rule -a Transmission-gtk desktop='^5' follow=on
+bspc rule -a Ristretto desktop='^3' follow=on
+bspc rule -a Code desktop='^4' follow=on
 
 

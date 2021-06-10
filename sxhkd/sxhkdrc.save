@@ -22,7 +22,7 @@ super + Return
 
 # program launcher
 super + q
-	dmenu_run
+dmenu_run
 
 ctrl  + shift + @Escape
 	xfce4-taskmanager
@@ -169,7 +169,7 @@ XF86MonBrightnessUp
 
 
 # lockscreen
-ctrl + L 
+ctrl + shift + l
 	light-locker-command -l	
 
 # browser
