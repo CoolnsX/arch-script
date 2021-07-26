@@ -8,20 +8,18 @@ git clone https://aur.archlinux.org/yay.git
 cd yay/
 makepkg -si --noconfirm
 
-yay -S --noconfirm auto-cpufreq polybar ttf-unifont siji
+yay -S --noconfirm auto-cpufreq polybar ttf-unifont
 sudo systemctl enable --now auto-cpufreq
 
 echo "MAIN PACKAGES"
 
 sleep 5
 
-sudo pacman -S --noconfirm --needed xorg light-locker lightdm bspwm sxhkd xfce4-terminal picom nitrogen lxappearance dmenu thunar simplescreenrecorder alsa-utils pulseaudio pulseaudio-alsa pavucontrol vlc dunst
+sudo pacman -S --noconfirm --needed xorg-server slock lightdm bspwm sxhkd st picom xwallpaper lxappearance-gtk3 dmenu pcmanfm simplescreenrecorder alsa-utils pulseaudio pulseaudio-alsa pavucontrol vlc dunst
 
 sudo systemctl enable lightdm
 
-mkdir -p .config/{bspwm,sxhkd,dunst,polybar}
+git clone https://github.com/CoolnsX/dotfiles.git
+cd dotfiles
 
-install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
-install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
-
-printf "\e[1;32mCHANGE NECESSARY FILES BEFORE REBOOT\e[0m"
+printf "\e[1;32mCOPY THESE NECESSARY FILES BEFORE REBOOT\e[0m"
