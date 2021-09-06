@@ -12,7 +12,7 @@ echo "MAIN PACKAGES"
 
 sleep 5
 
-sudo pacman -S --noconfirm --needed xorg-server slock lightdm bspwm sxhkd st picom xwallpaper lxappearance-gtk3 dmenu pcmanfm simplescreenrecorder alsa-utils pulseaudio pulseaudio-alsa pavucontrol vlc dunst
+sudo pacman -S --noconfirm --needed xorg-server slock lightdm bspwm sxhkd st picom ttf-roboto xwallpaper lxappearance-gtk3 dmenu pcmanfm simplescreenrecorder alsa-utils pulseaudio pulseaudio-alsa pavucontrol vlc dunst
 
 yay -S --noconfirm polybar ttf-unifont google-chrome mugshot qogir-gtk-theme qogir-icon-theme auto-cpufreq timeshift timeshift-autosnap ttf-ms-fonts
 sudo systemctl enable --now auto-cpufreq
