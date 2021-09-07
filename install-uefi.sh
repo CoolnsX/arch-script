@@ -33,9 +33,9 @@ passwd tanveer
 touch /etc/doas.conf
 echo "permit nopass :wheel as root" >> /etc/doas.conf
 
-#echo "Enable users wheel in sudoers file"
-#sleep 5
-#EDITOR=nano visudo
+echo "Enable users wheel in sudoers file"
+sleep 5
+EDITOR=nvim visudo
 
 printf "\e[1;32mDone! Type exit, umount -a and reboot.If u installed system on btrfs FS... considering add btrfs in modules of mkinitcpio file and generate initcpio file\e[0m"
 
