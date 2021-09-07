@@ -12,12 +12,12 @@ echo "MAIN PACKAGES"
 
 sleep 5
 
-sudo pacman -S --noconfirm --needed xorg-server slock lightdm bspwm sxhkd st picom ttf-roboto xwallpaper lxappearance-gtk3 dmenu pcmanfm simplescreenrecorder alsa-utils pulseaudio pulseaudio-alsa pavucontrol vlc dunst
+sudo pacman -S --noconfirm --needed xorg-server slock bspwm sxhkd picom ttf-roboto xwallpaper lxappearance-gtk3 pcmanfm simplescreenrecorder alsa-utils pulseaudio pulseaudio-alsa pavucontrol vlc dunst
 
-yay -S --noconfirm polybar ttf-unifont google-chrome mugshot qogir-gtk-theme qogir-icon-theme auto-cpufreq timeshift timeshift-autosnap ttf-ms-fonts
+paru -S --noconfirm polybar ly ttf-unifont google-chrome mugshot auto-cpufreq timeshift timeshift-autosnap ttf-ms-fonts
 sudo systemctl enable --now auto-cpufreq
 
-sudo systemctl enable lightdm
+sudo systemctl enable ly
 
 git clone https://github.com/CoolnsX/repos_scripts.git
 git clone https://github.com/CoolnsX/dotfiles.git
