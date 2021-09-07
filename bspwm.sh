@@ -4,8 +4,8 @@ sudo hwclock --systohc
 sudo reflector --verbose --protocol http,https --latest 10 -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syy
 
-git clone https://aur.archlinux.org/yay.git
-cd yay/
+git clone https://aur.archlinux.org/paru.git
+cd paru/
 makepkg -si --noconfirm
 
 echo "MAIN PACKAGES"
