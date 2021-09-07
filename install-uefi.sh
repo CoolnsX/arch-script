@@ -15,7 +15,7 @@ passwd root
 # You can add xorg to the installation packages, I usually add it at the DE or WM install script
 # You can remove the tlp package if you are installing on a desktop or vm
 
-pacman -S --noconfirm --needed doas efibootmgr os-prober grub grub-btrfs networkmanager btrfs-progs dialog wpa_supplicant dosfstools reflector base-devel xdg-user-dirs xdg-utils gvfs-mtp bluez bluez-utils alsa-utils alsa-firmware alsa-lib alsa-oss alsa-plugins alsa-topology-conf alsa-ucm-conf pulseaudio pulseaudio-bluetooth bash-completion openssh git neovim
+pacman -S --noconfirm --needed doas efibootmgr os-prober grub grub-btrfs networkmanager materia-gtk-theme papirus-icon-theme btrfs-progs dialog wpa_supplicant dosfstools reflector base-devel xdg-user-dirs xdg-utils gvfs-mtp bluez bluez-utils alsa-utils alsa-firmware alsa-lib alsa-oss alsa-plugins alsa-topology-conf alsa-ucm-conf pulseaudio pulseaudio-bluetooth bash-completion openssh git neovim
 pacman -S --noconfirm --needed xf86-video-intel
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
